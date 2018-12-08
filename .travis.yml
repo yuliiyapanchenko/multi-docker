@@ -3,21 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t ypanchenko/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t panichkina/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run ypanchenko/react-test npm test -- --coverage
+  - docker run panichkina/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ypanchenko/multi-client ./client
-  - docker build -t ypanchenko/multi-nginx ./nginx
-  - docker build -t ypanchenko/multi-server ./server
-  - docker build -t ypanchenko/multi-worker ./worker
+  - docker build -t panichkina/multi-client ./client
+  - docker build -t panichkina/multi-nginx ./nginx
+  - docker build -t panichkina/multi-server ./server
+  - docker build -t panichkina/multi-worker ./worker
   # login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take built images and push to docker hub
-  - docker push ypanchenko/multi-client
-  - docker push ypanchenko/multi-nginx
-  - docker push ypanchenko/multi-server
-  - docker push ypanchenko/multi-worker
-  - docker images
+  - docker push panichkina/multi-client
+  - docker push panichkina/multi-nginx
+  - docker push panichkina/multi-server
+  - docker push panichkina/multi-worker
