@@ -20,3 +20,4 @@ after_success:
   - docker push ypanchenko/multi-nginx
   - docker push ypanchenko/multi-server
   - docker push ypanchenko/multi-worker
+  - docker images
